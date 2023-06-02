@@ -81,11 +81,15 @@ Using rqt_plot
 rqt_plot displays a scrolling time plot of the data published on topics
 -->rosrun rqt_plot rqt_plot
 
+9. Using rosservice
+-->rosservice list
 
+Find type of Ros service
+-->rosservice type [service]
+std_srvs/Empty means when the service call is made it takes no arguments (i.e. it sends no data when making a request and receives no data when receiving a response).
 
-
-
-
+Call ROS service
+-->rosservice call [service] [args]
 
 
 
