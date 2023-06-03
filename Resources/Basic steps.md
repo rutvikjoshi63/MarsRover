@@ -129,7 +129,7 @@ Debug) of nodes as they run
 -->rosrun rqt_logger_level rqt_logger_level
 
 12. Using roslaunch and mimicing nodes.
-roslaunch starts nodes as defined in a launch file
+roslaunch starts nodes as defined in a launch file. Open package directory and run
 -->roslaunch [package] [filename.launch]
 
 The Launch File
@@ -151,6 +151,8 @@ we start the mimic node with the topics input and output renamed to turtlesim1 a
 13. Using rosed
 allows you to directly edit a file within a package by using the package name rather than having to type the entire path to the package. 
 -->rosed [package_name] [filename]
+-->source devel/setup.bash
+-->roscd beginner_tutorials
 
 14. msg and srv
 msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
