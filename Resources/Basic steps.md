@@ -153,6 +153,40 @@ allows you to directly edit a file within a package by using the package name ra
 -->rosed [package_name] [filename]
 
 14. msg and srv
+msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
+
+srv: an srv file describes a service. It is composed of two parts: a request and a response. The two parts are separated by a '---' line.
+
+#Need to understand better//
+    Creating a msg-
+-->mkdir msg
+-->echo "int64 num" > msg/Num.msg
+Open package.xml
+--><build_depend>message_generation</build_depend>
+-->  <exec_depend>message_runtime</exec_depend>
+Open CMakeLists.txt
+find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+-->message_generation
+)
+export the message runtime dependency:
+catkin_package(
+  ...
+ add_message_files(
+   FILES
+   Num.msg
+   Message1.msg
+   Message2.msg
+ )
+ ...
+ ensure the generate_messages() function is called
+ generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+...)
 
 
 
