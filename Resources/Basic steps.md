@@ -82,14 +82,91 @@ rqt_plot displays a scrolling time plot of the data published on topics
 -->rosrun rqt_plot rqt_plot
 
 9. Using rosservice
+Services are another way that nodes can communicate with each other. Services allow nodes to send a request and receive a response
 -->rosservice list
 
 Find type of Ros service
 -->rosservice type [service]
 std_srvs/Empty means when the service call is made it takes no arguments (i.e. it sends no data when making a request and receives no data when receiving a response).
+-->rosservice type /spawn | rossrv show
+guessing that rossrv show needed to input spawn location??
+##Need to confirm  rossrv show
 
 Call ROS service
 -->rosservice call [service] [args]
+rosservice call /spawn 2 2 0.2 ""
+"" for name of turtule decided by ROS
+
+10. Using rosparam
+rosparam allows you to store and manipulate data on the ROS Parameter Server. The Parameter Server can store integers, floats, boolean, dictionaries, and lists
+rosparam uses the YAML markup language for syntax
+1 is an integer, 
+1.0 is a float, 
+one is a string, 
+true is a boolean, 
+[1, 2, 3] is a list of integers, and 
+{a: b, c: d} is a dictionary
+Usage:
+rosparam set            set parameter
+rosparam get            get parameter
+rosparam load           load parameters from file
+rosparam dump           dump parameters to file
+rosparam delete         delete parameter
+rosparam list           list parameter names
+
+rosparam dump and rosparam load
+-->rosparam dump [file_name] [namespace]
+-->rosparam load [file_name] [namespace]
+
+11. Using rqt_console and roslaunch
+rqt_console attaches to ROS's logging framework to display output from nodes. rqt_logger_level allows us to change the verbosity level (Fatal
+Error
+Warn
+Info
+Debug) of nodes as they run
+
+-->rosrun rqt_console rqt_console
+-->rosrun rqt_logger_level rqt_logger_level
+
+12. Using roslaunch
+roslaunch starts nodes as defined in a launch file
+-->roslaunch [package] [filename.launch]
+
+The Launch File
+<launch>
+Here we start the launch file with the launch tag, so that the file is identified as a launch file. 
+
+<group ns="turtlesim1">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+</group>
+Here we start many groups with a namespace tag of turtlesim1 and turtlesim2 with a turtlesim node with a name of sim. This allows us to start many simulators without having name conflicts
+
+ <node pkg="turtlesim" name="mimic" type="mimic">
+  <remap from="input" to="turtlesim1/turtle1"/>
+  <remap from="output" to="turtlesim2/turtle1"/>
+ </node>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
