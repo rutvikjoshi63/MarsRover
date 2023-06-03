@@ -163,7 +163,7 @@ srv: an srv file describes a service. It is composed of two parts: a request and
 -->echo "int64 num" > msg/Num.msg
 Open package.xml
 --><build_depend>message_generation</build_depend>
--->  <exec_depend>message_runtime</exec_depend>
+--> <exec_depend>message_runtime</exec_depend>
 Open CMakeLists.txt
 find_package(catkin REQUIRED COMPONENTS
    roscpp
@@ -177,8 +177,11 @@ catkin_package(
  add_message_files(
    FILES
    Num.msg
+   AddTwoInts.srv
    Message1.msg
    Message2.msg
+   Service1.srv
+   Service2.srv
  )
  ...
  ensure the generate_messages() function is called
@@ -188,9 +191,32 @@ catkin_package(
 )
 ...)
 
+    Using rosmsg
+-->rosmsg show [message type]   
+[message type] will be [package_name]/[filename of the msg]
 
+can't remember which Package a msg is in
+-->rosmsg show [filename of the msg]
 
+    Creating a srv
+-->mkdir srv
+Instead of creating a new srv definition copy an existing one
+copying files from one package to another
+-->roscp [package_name] [file_to_copy_path] [copy_path]
+-->roscp rospy_tutorials AddTwoInts.srv srv/AddTwoInts.srv
+open package.xml & Open CMakeLists.txt & follow same steps
 
+    Using rossrv
+-->rossrv show <service type>
+<service type> will be [package_name]/[filename of the srv]
+-->rossrv show [filename of the srv]
+
+Now that we have made some new messages we need to make our package again
+#Difference?
+-->catkin_make/catkin build
+
+    Getting Help
+-->rosmsg -h
 
 
 
