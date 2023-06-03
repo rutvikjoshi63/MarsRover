@@ -128,7 +128,7 @@ Debug) of nodes as they run
 -->rosrun rqt_console rqt_console
 -->rosrun rqt_logger_level rqt_logger_level
 
-12. Using roslaunch
+12. Using roslaunch and mimicing nodes.
 roslaunch starts nodes as defined in a launch file
 -->roslaunch [package] [filename.launch]
 
@@ -146,6 +146,13 @@ Here we start many groups with a namespace tag of turtlesim1 and turtlesim2 with
   <remap from="output" to="turtlesim2/turtle1"/>
  </node>
 
+we start the mimic node with the topics input and output renamed to turtlesim1 and turtlesim2. This renaming will cause turtlesim2 to mimic turtlesim1
+
+13. Using rosed
+allows you to directly edit a file within a package by using the package name rather than having to type the entire path to the package. 
+-->rosed [package_name] [filename]
+
+14. msg and srv
 
 
 
