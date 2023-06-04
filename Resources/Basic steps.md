@@ -298,9 +298,6 @@ rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
 
 
 
-subscribe to a message
-
-
 
 
 
