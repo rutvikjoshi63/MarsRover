@@ -43,6 +43,9 @@ std_msgs/String – This is the topic type if we want to publish a string topic.
 3. help option to get the available sub-commands for rostopic 
 -->rostopic -h
 
+To know Published topics & Subscribed topics
+-->rostopic -v
+
 Check list of all ROS topics
 -->rostopic list
 
@@ -242,25 +245,46 @@ target_link_libraries(talker ${catkin_LIBRARIES})
 
 make sure you have sourced your workspace's setup.sh file after calling catkin_make
 
+16. Writing a Service Node
+Create the filename.cpp for service node
 
+Writing a Client Node
+Create the filename.cpp for client node
+add these few lines to the bottom of your CMakeLists.txt 
+eg:
+-->add_executable(talker src/talker.cpp)
+-->target_link_libraries(talker ${catkin_LIBRARIES})
+-->add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 
+make sure you have sourced your workspace's setup.sh file after calling catkin_make
 
+17. Recording and playing back data
+record data from a running ROS system into a .bag file, and then to play back the data to produce similar behavior in a running system
 
+Recording data (creating a bag file)
+First examine the full list of topics that are currently being published in the running system. The list of published topics are the only message types that could potentially be recorded in the data log file, as only published messages are recorded
 
+-->mkdir ~/bagfiles
+-->cd ~/bagfiles
+-->rosbag record -a
+a temporary directory to record data and then running rosbag record with the option -a, indicating that all published topics should be accumulated in a bag file. 
 
+Examining and playing the bag file
+-->rosbag info <your bagfile>
+info command checks the contents of the bag file without playing it back
 
+First kill the previous program
+-->rosbag play <your bagfile>
+ If rosbag play publishes messages immediately upon advertising, subscribers may not receive the first several published messages. The waiting period can be specified with the -d option. 
 
+-->rosbag play -r 2 <your bagfile>
+change the rate of publishing by a specified factor(-r)
+change the start of publishing by a specified factor(-s)
 
-
-
-
-
-
-
-
-
-
-
+Recording a subset of the data
+eg:
+rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
+-O argument tells to log to a file named subset.bag & arguments cause to only subscribe to these two topics
 
 
 
