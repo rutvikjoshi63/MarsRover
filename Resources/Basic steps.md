@@ -161,11 +161,14 @@ srv: an srv file describes a service. It is composed of two parts: a request and
 
 #Need to understand better//
     Creating a msg-
+-->roscd [package_name]
 -->mkdir msg
 -->echo "int64 num" > msg/Num.msg
 Open package.xml
 --><build_depend>message_generation</build_depend>
 --> <exec_depend>message_runtime</exec_depend>
+at build time, we need "message_generation", while at runtime, we only need "message_runtime". 
+
 Open CMakeLists.txt
 find_package(catkin REQUIRED COMPONENTS
    roscpp
@@ -173,32 +176,32 @@ find_package(catkin REQUIRED COMPONENTS
    std_msgs
 -->message_generation
 )
-export the message runtime dependency:
-catkin_package(
-  ...
+export the message runtime dependency#How?
+find:
+
  add_message_files(
    FILES
    Num.msg
-   AddTwoInts.srv
-   Message1.msg
-   Message2.msg
-   Service1.srv
-   Service2.srv
  )
  ...
+ add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+...
  ensure the generate_messages() function is called
  generate_messages(
   DEPENDENCIES
   std_msgs
 )
-...)
+...
 
     Using rosmsg
 -->rosmsg show [message type]   
-[message type] will be [package_name]/[filename of the msg]
+[message type] will be [package_name]/[filename of the msg(without.msg)]
 
 can't remember which Package a msg is in
--->rosmsg show [filename of the msg]
+-->rosmsg show [filename of the msg(without.msg)]
 
     Creating a srv
 -->mkdir srv
@@ -219,6 +222,38 @@ Now that we have made some new messages we need to make our package again
 
     Getting Help
 -->rosmsg -h
+
+15. Publishing and subscribing
+after writing code in /src
+
+add these few lines to the bottom of your CMakeLists.txt 
+eg:
+-->add_executable(talker src/talker.cpp)
+-->target_link_libraries(talker ${catkin_LIBRARIES})
+-->add_dependencies(talker beginner_tutorials_generate_messages_cpp)
+
+This will create two executables, talker and listener, which by default will go into package directory of your devel space
+
+add_dependencies(...) makes sure message headers of this package are generated before being used
+you use messages from other packages inside your catkin workspace, you need to add dependencies to their respective generation targets as well, because catkin builds all projects in parallel
+
+use the following variable to depend on all necessary targets: 
+target_link_libraries(talker ${catkin_LIBRARIES})
+
+make sure you have sourced your workspace's setup.sh file after calling catkin_make
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
