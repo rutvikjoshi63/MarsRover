@@ -286,12 +286,28 @@ eg:
 rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
 -O argument tells to log to a file named subset.bag & arguments cause to only subscribe to these two topics
 
+18. Reading messages from a bag file
+manually inspect all published topics and how many messages were published to each topic with this command: 
+-->time rosbag info demo.bag  
+-->roscore
 
+Subscribe to the topic of interest & echo everything published on this topic while also teeing it to a file for later review, all in yaml format: 
+-->rostopic echo <topic of interest> | tee topic1.yaml
+-->rostopic echo <topic of interest2> | tee topic2.yaml
 
+Each topic must have its own terminal. 
 
+In another terminal we play the bag file
+-->time rosbag play --immediate demo.bag --topics /topic1 /topic2 /topic3 /topicN
+/topic1 : <topic of interest>
+you'll see the output of all messages for each topic type, in YAML format in terminals which were each subsribed to a topic
 
+19. Getting started with roswtf
+roswtf will warn you about things that look suspicious but may be normal in your system. It can also report errors for problems that it knows are wrong
 
-
+1. Checking your installation
+-->roscd rosmaster
+-->roswtf
 
 
 
