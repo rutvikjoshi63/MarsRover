@@ -226,7 +226,7 @@ Now that we have made some new messages we need to make our package again
     Getting Help
 -->rosmsg -h
 
-15. Publishing and subscribing
+15. Publishing and subscribing (C++)Don't forget to make the node executable
 after writing code in /src
 
 add these few lines to the bottom of your CMakeLists.txt 
@@ -244,11 +244,27 @@ use the following variable to depend on all necessary targets:
 target_link_libraries(talker ${catkin_LIBRARIES})
 
 make sure you have sourced your workspace's setup.sh file after calling catkin_make
+running subscriber and publisher
+-->rosrun [projectname] [filename]
 
-16. Writing a Service Node
+
+Publishing and subscribing (Python)Don't forget to make the node executable
+First create a 'scripts' folder to store our Python scripts in: 
+after writing code in /scripts
+
+Edit CMakelist
+catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+running subscriber and publisher
+-->rosrun [projectname] [filename]
+
+
+16. Writing a Service Node(C++)Don't forget to make the node executable
 Create the filename.cpp for service node
 
-Writing a Client Node
+Writing a Client Node(C++)Don't forget to make the node executable
 Create the filename.cpp for client node
 add these few lines to the bottom of your CMakeLists.txt 
 eg:
@@ -257,6 +273,11 @@ eg:
 -->add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 
 make sure you have sourced your workspace's setup.sh file after calling catkin_make
+
+Writing a Service Node & client(Python)Don't forget to make the node executable
+-->roscd [projectname]
+
+Create the scripts/[filename].py file within the beginner_tutorials package and write code
 
 17. Recording and playing back data
 record data from a running ROS system into a .bag file, and then to play back the data to produce similar behavior in a running system
@@ -309,8 +330,11 @@ roswtf will warn you about things that look suspicious but may be normal in your
 -->roscd rosmaster
 -->roswtf
 
+ubuntu open any file from terminal command
+-->xdg-open [filename]
 
-
+to make the node executable
+-->chmod +x [filename]
 
 
 
