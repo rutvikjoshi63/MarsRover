@@ -4,6 +4,7 @@ All files generated while working @Mars Rover IIT-B
 1. -->cd ~/catkin_ws/src
 
 2. -->catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+std_msgs rospy roscpp
 
 3. -->catkin_make
 
@@ -48,6 +49,8 @@ To know Published topics & Subscribed topics
 
 Check list of all ROS topics
 -->rostopic list
+-->rostopic list | grep counter
+to check counter topic 
 
 -->rostopic type [topic]
 returns the message type of any topic being published
