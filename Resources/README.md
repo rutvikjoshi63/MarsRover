@@ -1,7 +1,7 @@
 All files that can be great use for revising.
 ##Folder Names
 
-1. Catkin_ws src files: Contains my Catkin src files(presently only beginner tutorials from ROS wiki )
+1. Catkin_ws src files: Contains my Catkin src files(presently only beginner tutorials from ROS wiki & theConstruct exersice and problems )
 
 2. txtbk : Contains big pdfs to Learn/revise topics.(presently need to read both )
 
