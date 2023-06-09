@@ -329,6 +329,13 @@ you'll see the output of all messages for each topic type, in YAML format in ter
 19. Getting started with roswtf
 roswtf will warn you about things that look suspicious but may be normal in your system. It can also report errors for problems that it knows are wrong
 
+20. you can simply install binaries with the rosdep command:
+-->rosdep install <package_name>
+
+You can also install all ROS package dependencies in one command:
+-->cd <path_to_ros_ws>/src
+-->rosdep install --from-paths . --ignore-src -y
+
 1. Checking your installation
 -->roscd rosmaster
 -->roswtf
