@@ -183,6 +183,14 @@ find_package(catkin REQUIRED COMPONENTS
 -->message_generation
 )
 export the message runtime dependency#How?
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES beginner_tutorials
+  CATKIN_DEPENDS roscpp rospy std_msgs (maybe add something )
+#  DEPENDS system_lib
+)
+Check if this correct
+
 find:
 
  add_message_files(
@@ -206,6 +214,11 @@ find:
 -->rosmsg show [message type]   
 [message type] will be [package_name]/[filename of the msg(without.msg)]
 
+-->rosmsg show [message type] -r
+explains msg files  
+
+For various msg check common msgs ros wiki online
+
 can't remember which Package a msg is in
 -->rosmsg show [filename of the msg(without.msg)]
 
@@ -221,6 +234,11 @@ open package.xml & Open CMakeLists.txt & follow same steps
 -->rossrv show <service type>
 <service type> will be [package_name]/[filename of the srv]
 -->rossrv show [filename of the srv]
+
+Call a rosservice
+-->rosservice call <service name> <arguments_req>
+##ROS Services block the program flow
+They stop the execution of program flow until the response has been received. This is useful for sequential behaviours. It also makes it desirable to have quickly executable computations for the service callback, so that the program is blocked for the least amount of time. There is also no going back on a service call: Once a request has been made, it will be processed until a response is sent. It can't be interrupted
 
 Now that we have made some new messages we need to make our package again
 #Difference?

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Argument to the launch file.-->
+  <!-- Change the default value as instructed in Part 2-->
+  <arg name="counter_delay_parameter" default="2.0"/>
+  <!-- roslaunch hrwros_week1_assignment hrwros_week1_assignment3.launch counter_delay_parameter:=2
+
+Notice the ”:=” (colon equals) after the counter_delay_parameter. That is how we can pass an argument value to a launch file, provided we have defined the same argument within the <arg> tag in the launch file
+ -->
+  <!-- Start the metres_to_feet service server node.-->
+  <node name="metres_to_feet" pkg="hrwros_week1" type="metres_to_feet_server.py" output="screen"/>
+
+  <!-- Start the counter with delay action server node /-->
+  <node name="counter_with_delay" pkg="hrwros_week1_assignment" type="week1_assignment3.py"
+    output="screen">
+    <param name="counter_delay" type="double" value="$(arg counter_delay_parameter)"/>
+    <!-- Defining a parameter inside the <node> tags of a launch file, makes this parameter a private parameter. Hence, the parameter in the parameter list is also prefixed with the node name, that is /counter_with_delay. -->
+  </node>
+
+</launch>
