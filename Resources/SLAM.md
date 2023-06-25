@@ -108,8 +108,9 @@ Finally in a third CCS we will open up RViz to visualize the navigation.
 --->roslaunch turtlebot_rviz_launchers view_navigation.launch
 
 
-ROS navigation stack
-
+ROS navigation stack(http://wiki.ros.org/navigation/Tutorials/RobotSetup)
+![Alt text](images/navigationstack.png)
+The white components are required components that are already implemented, the gray components are optional components that are already implemented, and the blue components must be created for each robot platform. 
 
     The ROS Navigation Stack is meant for 2D maps, square or circular robots with a holonomic drive, and a planar laser scanner, all of which a Turtlebot has. It uses odometry, sensor data, and a goal pose to give safe velocity commands.
     The node “move_base” is where all the magic happens in the ROS Navigation Stack.
