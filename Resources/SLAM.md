@@ -38,6 +38,9 @@ Mapping
 When using the metro type of representation of the map likely to have topological maps
 When using the lateral & longitudinal type of representation of the map likely to have metric maps
 
+In general a metric representation is more sensitive to sensor noise than a topological representation.
+
+
 The Turtlebot uses a SLAM implementation called “gmapping”, and a laser scanner to gather information about the environment and build a map
 
 
@@ -94,6 +97,45 @@ To visualize the mapping process open up RViz. We can open up a 'blank' RViz win
 After moving around for a while you will have created a great map. This map will be very useful when we want to navigate the world. However, we need to save it somewhere
 
 --->rosrun map_server map_saver -f $HOME/<choose a directory>/test_map
+
+we will need to open up the nodes responsible for localization. In the second CCS execute:
+--->roslaunch turtlebot_gazebo amcl_demo.launch map_file:=$HOME/<directory of map>/test_map.yaml
+Note that the map file used should the yaml file
+The amcl stands for Adaptive Monte Carlo Localization. This is a probabilistic localization system for a robot moving in 2D which uses a particle filter to track the pose of a robot against a known map.
+
+Finally in a third CCS we will open up RViz to visualize the navigation.
+
+--->roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+
+ROS navigation stack
+
+
+    The ROS Navigation Stack is meant for 2D maps, square or circular robots with a holonomic drive, and a planar laser scanner, all of which a Turtlebot has. It uses odometry, sensor data, and a goal pose to give safe velocity commands.
+    The node “move_base” is where all the magic happens in the ROS Navigation Stack.
+    Uses a global and local planner to accomplish the navigation goal.
+    Manages communication within the navigation stack.
+    Sensor information is gathered (sensor sources node), then put into perspective (sensor transformations node), then combined with an estimate of the robots position based off of its starting position (odometry source node). This information is published so that “move_base” can calculate the trajectory and pass on velocity commands (through the base controller node).
+
+Path planning tutorial
+open the TurtleBot in Gazebo
+--->roslaunch turtlebot_gazebo turtlebot_world.launch
+open up the nodes responsible for localization and navigation
+nodes responsible for localization
+--->roslaunch turtlebot_gazebo amcl_demo.launch
+uses a particle filter to track the pose of a robot against a known map (the default one is none is specified).This launcher also starts the move_base node, which is responsible for planning and controlling the movements of the robot. 
+
+open up RViz to visualize the navigation
+--->roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+![Alt text](images/AutonomousMappingLocalisation.png)
+
+
+
+
+
+
+
 
 
 
