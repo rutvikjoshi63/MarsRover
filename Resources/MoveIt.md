@@ -15,7 +15,7 @@ Manipulation consists of multiple successive steps. These steps are also known a
 
  Per functional modules, there are many software options. 
 
-        Sensors:  [Real Sense](http://wiki.ros.org/RealSense) or the Ensenso 3D camera
+        Sensors: [Real Sense](http://wiki.ros.org/RealSense/) or the Ensenso 3D camera
         Motion planning: OMPL or CHOMP
         Collision Checking: Flexible Collision Library (FCL) or Bullet Physics Library
         Trajectory processing: Iterative Parabolic Time Parameterization (IPTP) or Time Optimal Path Paramaterization (TOPP)
