@@ -112,6 +112,13 @@ ROS navigation stack(http://wiki.ros.org/navigation/Tutorials/RobotSetup)
 ![Alt text](images/navigationstack.png)
 The white components are required components that are already implemented, the gray components are optional components that are already implemented, and the blue components must be created for each robot platform. 
 
+The ROS navigation stack does not require a map to achieve autonomous navigation.
+![Alt text](images/quiz.png)
+Odometry data is used to estimate where the robot is with respect to its starting position.
+Sensor transform node is platform specific and is responsible for publishing information about the relationships between coordinate frames of different sensors over the /tf topic.
+
+
+
     The ROS Navigation Stack is meant for 2D maps, square or circular robots with a holonomic drive, and a planar laser scanner, all of which a Turtlebot has. It uses odometry, sensor data, and a goal pose to give safe velocity commands.
     The node “move_base” is where all the magic happens in the ROS Navigation Stack.
     Uses a global and local planner to accomplish the navigation goal.
@@ -131,22 +138,34 @@ open up RViz to visualize the navigation
 
 ![Alt text](images/AutonomousMappingLocalisation.png)
 
+Localization Assignment:
+Launch the hrwros factory simulation with:
+--->roslaunch hrwros_week3 hrwros_turtlebot_navigation.launch
 
+Launch AMCL(Adaptive Monte Carlo Localization) with a map of the factory
+open up the nodes responsible for localization and navigation
+nodes responsible for localization
+--->roslaunch hrwros_week3_assignment amcl_navigation.launch map_file:=$HOME/hrwros_ws/src/hrwros_week3/config/map_factory_v1.yaml
 
+start the RViz navigation visualization
+--->roslaunch hrwros_week3_assignment view_navigation.launch
 
+pose of the TurtleBot in RViz is incorrect, it's further away  from the obstacles in Gazebo than in RViz 
+--->roslaunch hrwros_week3_assignment amcl_navigation.launch map_file:=$HOME/hrwros_ws/src/hrwros_week3/config/map_factory_v1.yaml initial_pose_x:=<XCOORD> initial_pose_y:=<YCOORD>
 
+We can set those changes on the amcl_navigation.launch file.
 
+    Edit the relevant parts of the amcl_navigation.launch to change the default arguments <arg>  tags.
 
+SLAM assignment:
+visualize the Full Path planned by the Navigation stack in RViz by adding so-called path elements by following:
+Add path display to Rviz and select correct topic
+The topic should visualize the overall global path, global path and local path planned by the navigation stack using Dijkstra's algorithm.
 
+update two files: week3_assignment3_part1.py, week3_assignment3_part1.launch, week3_assignment3_part2.py and week3_assignment3_part2.launch. 
 
-
-
-
-
-
-
-
-
+The goal is to have the TurtleBot navigate to its first target location for the factory operation
+check turtlebot_target1 and turtlebot_target2 for final location
 
 
 
