@@ -11,6 +11,10 @@ Accounts for any hardware limitations of the robot.
 Keeps track of Robot location.
 Communicates with robot hardware/simulation
 
+Gazebo only provides MoveIt with information that MoveIt wants based on the controllers.yaml file in the MoveIt configuration package. And there is no controller specified for the TurtleBot in the controllers.yaml file in the MoveIt configuration package.
+Correct: Yes, this is possible. Like it was mentioned in the introduction video to this week, MoveIt can be configured to also work with Mobile robots.
+
+
 ROS node: move_group 
 This node provides us with several ROS services and actions.
 
